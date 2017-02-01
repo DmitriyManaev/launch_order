@@ -17,12 +17,15 @@ gem 'haml-rails', '~> 0.9'
 gem 'mini_magick'
 gem 'therubyracer', platforms: :ruby
 gem 'unicorn'
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'byebug'  
   gem 'rspec-rails'
   gem 'spring'
   gem 'database_cleaner'
+  gem 'poltergeist'
+  gem 'phantomjs'
 end
 
 group :development do

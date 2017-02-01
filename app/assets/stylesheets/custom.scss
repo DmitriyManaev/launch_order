@@ -1,0 +1,43 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+.form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  .form-field{
+    margin-bottom: 10px;
+  }
+  .checkbox{
+    padding-left: 20px;
+  }
+}  
+/* alert messages */
+.alert {
+  display: block;
+  position: relative;
+  background: #f9f9f9;
+  margin: 0 0 30px;
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+  color: #666;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.alert-success {
+  background: #d9f5ce;
+  color: #060;
+  border: 1px solid #6dcd72;
+}
+.alert-fail {
+  background: #ffdec9;
+  color: #761a1a;
+  border: 1px solid #d8986e;
+}
+.alert-notice {
+  background: #e1edf9;
+  color: #3c3c7c;
+  border: 1px solid #acb7e2;
+}

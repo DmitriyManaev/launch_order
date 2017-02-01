@@ -1,0 +1,23 @@
+%h1 
+  Hello, 
+  = current_user.name  
+%h2 Your profile
+- if current_user
+  .container
+    %p 
+      %b Name: 
+      = current_user.name
+      %br/ 
+      %b Email: 
+      = current_user.email 
+- if current_user.admin?
+  %h3 All users
+  - @users.each do |user|
+    %p
+      %strong 
+        Name:
+      = user.name
+    %p
+      %strong 
+        Email:
+      = user.email      
