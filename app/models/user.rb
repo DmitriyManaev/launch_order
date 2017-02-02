@@ -8,16 +8,20 @@ class User < ActiveRecord::Base
   
   before_save :assign_role
   belongs_to :role
-    
+
   def admin?
-    self.role.name == "Admin"
+    has_role? "Admin"
   end
 
   def user?
-    self.role.name == "User"
+    has_role? "User"
   end
   
   private
+
+  def has_role? role
+    self.role.name == role
+  end  
 
   def assign_role
     if !self.role     
