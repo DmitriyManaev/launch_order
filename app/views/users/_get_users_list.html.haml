@@ -1,0 +1,10 @@
+%h3 
+  All users
+%ol  
+  - @users.each do |user|
+    %li
+      %strong 
+        = user.name 
+      (
+      = user.email
+      )

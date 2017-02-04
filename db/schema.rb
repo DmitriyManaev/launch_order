@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130124537) do
+ActiveRecord::Schema.define(version: 20170204062106) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.float    "price"
+    t.string   "course_type"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "courses_daily_menus", id: false, force: :cascade do |t|
+    t.integer "courses_id"
+    t.integer "daily_menus_id"
+  end
+
+  add_index "courses_daily_menus", ["courses_id"], name: "index_courses_daily_menus_on_courses_id"
+  add_index "courses_daily_menus", ["daily_menus_id"], name: "index_courses_daily_menus_on_daily_menus_id"
+
+  create_table "daily_menus", force: :cascade do |t|
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "first_course_id"
+    t.integer  "main_course_id"
+    t.integer  "drink_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"

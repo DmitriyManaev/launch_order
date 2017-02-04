@@ -1,0 +1,8 @@
+.col-sm-3.sidebar
+  .list-group
+    = link_to 'Users', get_users_list_path, { :class => 'list-group-item', 
+                                              :id => 'ajax-users',
+                                              data: {remote: true} } 
+    = link_to 'Orders', admin_path, {:class => 'list-group-item'}
+    = link_to 'Courses', admin_courses_path, {:class => 'list-group-item'}
+    = link_to 'Add new course', new_admin_course_path, {:class => 'list-group-item'}  

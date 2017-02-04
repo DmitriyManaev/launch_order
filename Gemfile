@@ -18,6 +18,7 @@ gem 'mini_magick'
 gem 'therubyracer', platforms: :ruby
 gem 'unicorn'
 gem 'cancancan', '~> 1.10'
+gem 'holder_rails'
 
 group :development, :test do
   gem 'byebug'  

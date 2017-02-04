@@ -9,15 +9,4 @@
       = current_user.name
       %br/ 
       %b Email: 
-      = current_user.email 
-- if current_user.admin?
-  %h3 All users
-  - @users.each do |user|
-    %p
-      %strong 
-        Name:
-      = user.name
-    %p
-      %strong 
-        Email:
-      = user.email      
+      = current_user.email    

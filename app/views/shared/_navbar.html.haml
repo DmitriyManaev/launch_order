@@ -1,0 +1,19 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .collapse.navbar-collapse.right
+      %ul.nav.navbar-nav
+        - if user_signed_in?
+          %li 
+            = link_to 'Profile', root_path
+          %li 
+            = link_to 'Edit profile', edit_user_registration_path
+          %li 
+            = link_to 'Log out', destroy_user_session_path, method: :delete
+          - if current_user.admin?
+            %li
+              = link_to 'Admin panel', admin_path  
+        - else
+          %li
+            = link_to 'Log in', new_user_session_path
+          %li
+            = link_to 'Sign up', new_user_registration_path

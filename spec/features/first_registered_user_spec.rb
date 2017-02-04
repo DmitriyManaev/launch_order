@@ -15,7 +15,7 @@ describe 'User' do
       visit root_path
       
       expect(admin.role.name).to eq("Admin")
-      expect(page).to have_content("All users")
+      expect(page).to have_content("Admin panel")
     end
     
     it 'if he log in as user' do
@@ -25,7 +25,7 @@ describe 'User' do
       visit root_path
 
       expect(user.role.name).to eq("User")
-      expect(page).not_to have_content("All users")
+      expect(page).not_to have_content("Admin panel")
     end
 
   end

@@ -1,0 +1,22 @@
+%h2 Courses
+- @courses.each do |course|
+  .col-sm6.col-md-4
+    .thumbnail
+      - if course.image.url
+        = image_tag course.image.url
+      - else
+        = holder_tag "300x200", "No image"  
+      .caption
+        %h4 
+          = course.name
+        %p 
+          %strong 
+            Price:
+          = course.price
+        %p 
+          %strong 
+            Course type:
+          = course.course_type  
+        = link_to "Delete", delete_course_path(id: course.id), method: :delete
+
+
