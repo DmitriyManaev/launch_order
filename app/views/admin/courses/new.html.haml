@@ -15,7 +15,7 @@
     %label Choose course type
     = select "course", 
              "course_type", 
-             @course_types, 
+             @course.course_types, 
              { include_blank: false }, 
              class: "form-control form-field"
     = f.input :image, as: :file

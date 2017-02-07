@@ -5,11 +5,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [300, 200]
 
   def store_dir
-    "public/uploads/"
+    "uploads/"
+  end
+
+  def default_url(*args)
+    "unavailable.png"
   end
 
   version :thumb do
-    process resize_to_fill: [70, 50]
+    process resize_to_fill: [180, 180]
   end
 
   def extension_whitelist

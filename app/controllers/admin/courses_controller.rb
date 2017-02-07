@@ -7,7 +7,6 @@ class Admin::CoursesController < ApplicationController
   
   def new
     @course = Course.new
-    @course_types = ["first course", "main course", "drink"]
   end
     
   def create
@@ -17,13 +16,14 @@ class Admin::CoursesController < ApplicationController
       flash[:success] = "Course added successfully!"
       redirect_to admin_courses_path
     else
+      flash.now[:fail] = "Course not added!"
       render :new
     end   
   end
 
   def destroy
-    @course = Course.find(params[:id])
-    @course.destroy
+    course = Course.find(params[:id])
+    course.destroy
     flash[:success] = "Course destroyed."
     redirect_to admin_courses_path    
   end  

@@ -1,0 +1,24 @@
+$(document).ready(function() {
+  $('#datepicker').datepicker({
+    maxDate: "0d",
+    dateFormat: 'dd/mm/yy',
+    todayHighlight: true,
+    onSelect:function(){
+      date = this.value;
+
+      $("#date").text(date);
+
+      $.ajax({
+        url: "<%= Rails.application.routes.url_helpers.get_orders_path %>",
+        method: "GET",
+        dataType: "html",
+        data: {
+          date: date
+        },
+        success: function(data){
+          $("#order_items").html(data);
+        }
+      });
+    }
+  });
+}); 

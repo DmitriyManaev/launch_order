@@ -1,0 +1,23 @@
+.thumbnail
+  %strong
+    User:
+  = order.user.name
+  (
+  = order.user.email
+  )
+  %br/ 
+  %strong
+    First course:
+  = Course.find(order.first_course_id).name
+  %br/ 
+  %strong
+    Main course:
+  = Course.find(order.main_course_id).name
+  %br/ 
+  %strong
+    Drink:
+  = Course.find(order.drink_id).name
+  %br/ 
+  %strong
+    Order cost:
+  = order.total_cost

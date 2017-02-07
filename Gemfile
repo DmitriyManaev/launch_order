@@ -18,7 +18,8 @@ gem 'mini_magick'
 gem 'therubyracer', platforms: :ruby
 gem 'unicorn'
 gem 'cancancan', '~> 1.10'
-gem 'holder_rails'
+gem 'jquery-ui-rails', '~> 4.2.1'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'byebug'  

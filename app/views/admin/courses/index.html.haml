@@ -1,21 +1,22 @@
-%h2 Courses
+%h3 
+  Courses 
+  = link_to 'Add course', new_admin_course_path, {:class => 'btn btn-lg btn-link'}
 - @courses.each do |course|
-  .col-sm6.col-md-4
+  .col-md-4
     .thumbnail
-      - if course.image.url
-        = image_tag course.image.url
-      - else
-        = holder_tag "300x200", "No image"  
+      = image_tag course.image.url 
       .caption
-        %h4 
+        %p
+          %strong 
+            Name:
           = course.name
-        %p 
+          %br/ 
           %strong 
             Price:
           = course.price
-        %p 
+          %br/ 
           %strong 
-            Course type:
+            Type:
           = course.course_type  
         = link_to "Delete", delete_course_path(id: course.id), method: :delete
 

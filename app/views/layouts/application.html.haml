@@ -8,8 +8,8 @@
   %body
     = render 'shared/navbar'
     .container
-      = render 'shared/notice'
-      .row
-        .col-sm-9
-          #content.container.col-sm-12
-            = yield
+      #flash_area.flash_area
+        = render 'shared/notice'
+      .col-md-12 
+        %h2 Launch Order  
+      = yield

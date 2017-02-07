@@ -8,10 +8,11 @@
   %body
     = render 'shared/navbar'
     .container
-      = render 'shared/notice'
+      #flash_area.flash_area
+        = render 'shared/notice'
       .row
-        .col-sm-9
-          %h1 Admin panel
-          #content.container.col-sm-12
+        .col-md-9
+          %h2 Admin panel
+          #content.container.col-md-12
             = yield
         = render 'admin/shared/sidebar'   
