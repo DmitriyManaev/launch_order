@@ -1,20 +1,42 @@
 require 'rails_helper'
 
-describe 'User' do
-  context 'created' do
-    let(:admin) { create(:admin) }
-    let(:user) { create(:user) }
-    
-    it 'with appropriate role' do
-      expect(admin.role.name).to eq("Admin")
-      expect(user.role.name).to eq("User")
-      
-      expect(admin.admin?).to eq(true)
-      expect(admin.user?).to eq(false)
+describe User do
+  describe 'created' do
+    before :each do
+      Role.create(name: "Admin", description: "Admin abilities")
+      Role.create(name: "User", description: "User abilities")
 
-      expect(user.user?).to eq(true)
-      expect(user.admin?).to eq(false)  
+      @user = User.new(name: "Username", 
+                      email: "username@gmail.com", 
+                      password: "password",
+                      password_confirmation: "password", 
+                      role_id: "")
+    end
+    
+    context 'first registered user' do
+
+      it 'becomes admin' do
+        @user.save
+        expect(User.count).to eq(1)
+        expect(@user.admin?).to eq(true)
+      end  
+
+    end
+
+    context 'second registered user' do
+
+      it 'becomes user' do
+        User.create(name: "Admin", 
+                    email: "admin@gmail.com", 
+                    password: "passw0rd",
+                    password_confirmation: "passw0rd", 
+                    role_id: "")
+  
+        @user.save
+        expect(User.count).to eq(2)
+        expect(@user.user?).to eq(true)
+      end  
+
     end
   end
-
 end

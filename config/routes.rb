@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'daily_menus#index'
   get 'admin', to: 'admin#index'
   resources :orders, only: [:new, :create]
-  
+
   namespace :admin do
     resources :courses, except: :show
     resources :orders, only: :index
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   post 'admin/courses', to: 'admin/courses#create', as: 'create_course'
   delete 'admin/courses', to: 'admin/courses#destroy', as: 'delete_course'
-  resources :cources, only: :show
   resources :daily_menus, only: :index
   post 'admin/menu_items', to: 'admin/menu_items#create', as: 'add_item_to_menu'
   get 'get_daily_menus', to: 'get_daily_menus#index', as: 'get_daily_menu'
