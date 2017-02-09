@@ -31,13 +31,5 @@ FactoryGirl.define do
   factory :daily_menu do
     date today_date
   end
-  
-  
-
-  factory :order do
-    
-#    total_cost
-#    user
-  end
 
 end

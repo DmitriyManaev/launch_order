@@ -7,9 +7,9 @@ describe 'Ability' do
       admin = create(:admin)     
       login_as admin
 
-      visit root_path
+      visit rails_admin_path
       
-      expect(page).to have_content("Admin panel")
+      expect(page).to have_content("Admin")
     end
   end
 
@@ -18,9 +18,11 @@ describe 'Ability' do
       user = create(:user)
 
       sign_in user
-      visit root_path
+      visit rails_admin_path
 
-      expect(page).not_to have_content("Admin panel")
+      expect(page).not_to have_content("Admin")
+      expect(page).to have_content("Access denied!")
+      expect(page).to have_content("Daily menu for")
     end
   end
  

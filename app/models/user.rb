@@ -17,6 +17,16 @@ class User < ActiveRecord::Base
     has_role? "User"
   end
   
+  rails_admin do
+    list do
+      field :name
+      field :email
+      field :sign_in_count
+      field :last_sign_in_at
+      field :role
+    end  
+  end
+
   private
 
   def has_role? role

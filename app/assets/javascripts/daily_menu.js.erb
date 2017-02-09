@@ -1,8 +1,8 @@
 $(document).ready(function() {
   var totalPrice = function(){
-    var firstCoursePrice = parseInt($("#order_first_course_id").find(':selected').data("price"));
-    var mainCoursePrice = parseInt($("#order_main_course_id").find(':selected').data("price"));
-    var drinkPrice = parseInt($("#order_drink_id").find(':selected').data("price"));
+    var firstCoursePrice = parseFloat($("#order_first_course_id").find(':selected').data("price"));
+    var mainCoursePrice = parseFloat($("#order_main_course_id").find(':selected').data("price"));
+    var drinkPrice = parseFloat($("#order_drink_id").find(':selected').data("price"));
 
     var totalPrice = (firstCoursePrice + mainCoursePrice + drinkPrice) || 0;
     
@@ -27,7 +27,7 @@ $(document).ready(function() {
     todayHighlight: true,
     onSelect:function(){
       date = this.value;
-
+      console.log(date);
       $("#daily_menu_date").text(date);
 
       $.ajax({
@@ -38,6 +38,7 @@ $(document).ready(function() {
           date: date
         },
         success: function(data){
+          console.log(data);
           $("#daily_menu_items").html(data);
         }
       });

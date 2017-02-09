@@ -14,7 +14,6 @@ describe 'User' do
       user = create(:user)
       login_as user
       visit root_path
-      expect(page).to have_content("fuck!")
       
       click_button 'Submit'
 
