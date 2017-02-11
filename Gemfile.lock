@@ -49,7 +49,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    cancancan (1.15.0)
+    cancancan (1.16.0)
     capybara (2.12.0)
       addressable
       mime-types (>= 1.16)
@@ -247,9 +247,9 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (2.1.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
+      json (>= 1.8.0)
     unicorn (5.2.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -297,7 +297,7 @@ DEPENDENCIES
   spring
   therubyracer
   turbolinks
-  uglifier (= 2.1.1)
+  uglifier (~> 2.7)
   unicorn
   web-console (~> 2.0)
 
