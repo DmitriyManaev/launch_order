@@ -1,6 +1,8 @@
 language: ruby
 sudo: required
 dist: trusty
+rvm:
+  - "2.1.2"
 env:
   - DB=postgresql
 addons:
