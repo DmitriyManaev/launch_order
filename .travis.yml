@@ -11,9 +11,11 @@ before_script:
   - sudo /etc/init.d/postgresql stop
   - sudo apt-get update
   - sudo apt-get -y install postgresql-9.5
+  - sudo ln -s /tmp/.s.PGSQL.5432 /var/run/postgresql/.s.PGSQL.5432
   - sudo sh -c 'echo "local all postgres trust" > /etc/postgresql/9.5/main/pg_hba.conf'
   - sudo sh -c 'echo -n "host all all 127.0.0.1/32 trust" >> /etc/postgresql/9.5/main/pg_hba.conf'
   - sudo /etc/init.d/postgresql restart
+  - psql --version
   - cp config/database.yml.travis config/database.yml
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
 script:
