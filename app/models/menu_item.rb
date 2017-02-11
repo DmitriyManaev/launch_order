@@ -4,4 +4,8 @@ class MenuItem < ActiveRecord::Base
   belongs_to :course
   belongs_to :daily_menu
 
+  rails_admin do
+    visible false
+  end
+
 end
