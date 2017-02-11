@@ -1,12 +1,16 @@
 language: ruby
 sudo: required
 dist: trusty
-rvm:
-  - "2.1.2"
 env:
   - DB=postgresql
 addons:
   postgresql: "9.5"
+  apt:
+    sources:
+    - precise-pgdg-9.5
+    packages:
+    - postgresql-9.5
+    - postgresql-contrib-9.5
 before_script:
   - sudo /etc/init.d/postgresql stop
   - sudo apt-get update
@@ -16,6 +20,10 @@ before_script:
   - sudo /etc/init.d/postgresql restart
   - cp config/database.yml.travis config/database.yml
   - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres
+script:
+  - bundle exec rake db:migrate 
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
 branches:
   only:
     - master
