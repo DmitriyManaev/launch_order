@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   validates :user_id, :first_course_id, :main_course_id, :drink_id, :date, :total_cost, presence: true
-  
+  scope :for_day, ->(date) { where(date: date) }
+
   rails_admin do
     list do
       field :user
@@ -28,15 +29,4 @@ class Order < ActiveRecord::Base
       field :date
     end
   end
-
-  private
-
-  def orders_params
-    params.require(:order).permit(:user_id, 
-                                  :first_course_id, 
-                                  :main_course_id, 
-                                  :drink_id, 
-                                  :total_cost, 
-                                  :date)
-  end 
 end

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :trackable, 
          :validatable
   
-  before_save :assign_role
+  before_save :assign_role, :set_access_token
   belongs_to :role
 
   def admin?
@@ -39,5 +39,15 @@ class User < ActiveRecord::Base
       self.role = Role.find_by_name(new_role)
     end
   end   
+  
+  def set_access_token
+    self.access_token = generate_token
+  end
 
+  def generate_token
+    loop do
+      token = SecureRandom.hex(10)
+      break token unless User.where(access_token: token).exists?
+    end
+  end
 end

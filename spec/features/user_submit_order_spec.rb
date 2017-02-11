@@ -2,14 +2,13 @@ require 'rails_helper'
 
 describe 'User' do
   context 'submit order' do
+    let(:first_course) { create(:first_course) }
+    let(:main_course) { create(:main_course) }
+    let(:drink) { create(:drink) }
+    let(:daily_menu) { create(:daily_menu) }
 
     it 'accaunt updated successfully' do
-
-      create(:daily_menu) do |menu|
-        menu.courses.create(name: "soup", price: "10", course_type: "first course")
-        menu.courses.create(name: "plov", price: "20", course_type: "main course")
-        menu.courses.create(name: "tea", price: "30", course_type: "drink")
-      end
+      daily_menu.courses << [ first_course, main_course, drink ]
 
       user = create(:user)
       login_as user
