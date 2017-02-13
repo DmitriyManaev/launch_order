@@ -1,0 +1,37 @@
+$ ->
+  totalPrice = ->
+    firstCoursePrice = parseFloat $('#order_first_course_id').find(':selected').data 'price'
+    mainCoursePrice = parseFloat $("#order_main_course_id").find(':selected').data 'price'
+    drinkPrice = parseFloat $("#order_drink_id").find(':selected').data 'price'
+
+    total = firstCoursePrice + mainCoursePrice + drinkPrice or 0;
+    
+    $('#total_price').text total
+    
+    if firstCoursePrice and mainCoursePrice and drinkPrice
+      $('#orderSubmit').attr disabled: false
+    else
+      $('#orderSubmit').attr disabled: true
+  
+  totalPrice()
+  
+  $('.form-control').change ->
+    totalPrice()
+  
+  $('#datepicker').datepicker
+    minDate: '-2w'
+    maxDate: '0d'
+    dateFormat: 'dd/mm/yy'
+    todayHighlight: true
+    onSelect: ->
+      date = this.value
+      $("#daily_menu_date").text date
+
+      $.ajax "<%= Rails.application.routes.url_helpers.get_daily_menu_path %>",
+        method: "GET"
+        dataType: "html"
+        data: 
+          date: date
+        success: (data) ->
+          $("#daily_menu_items").html data
+

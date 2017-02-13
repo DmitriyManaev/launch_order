@@ -16,7 +16,6 @@ gem 'devise'
 gem 'haml-rails', '~> 0.9'
 gem 'mini_magick'
 gem 'therubyracer', platforms: :ruby
-gem 'unicorn'
 gem 'cancancan', '~> 1.10'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'jquery-turbolinks'
