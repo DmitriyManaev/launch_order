@@ -1,3 +1,6 @@
+require Rails.root.join('lib', 'rails_admin', 'orders_total_cost.rb')
+RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::OrdersTotalCost)
+
 RailsAdmin.config do |config|
 
   ## == Devise ==
@@ -49,6 +52,12 @@ RailsAdmin.config do |config|
     
     delete do
       only [Order, Course, DailyMenu]
+    end
+
+    orders_total_cost do
+      visible do
+        bindings[:abstract_model].model.to_s == "Order"
+      end
     end
   end
 end
