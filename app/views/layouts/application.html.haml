@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title LaunchOrder
+    %title Launch order
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -10,6 +10,5 @@
     .container
       #flash_area.flash_area
         = render 'shared/notice'
-      .col-md-12 
-        %h2 Launch Order  
-      = yield
+      .row
+        = yield   

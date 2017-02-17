@@ -1,21 +1,23 @@
-= image_tag course.image.url
-.caption
-  %p
-    %strong
-      Name
-    = course.name
-    %br/
-    %strong
-      Price:
-    = course.price
-    %br/
-    %strong
-      Type:
-    = course.course_type
-  = form_tag add_item_to_menu_path, method: :post do
-    = hidden_field_tag 'menu_item[course_id]', course.id
-    = hidden_field_tag 'menu_item[daily_menu_id]', @daily_menu.id        
-    .form-actions
-      = button_tag "Add to menu", 
-                   class: "btn btn-primary btn-block", 
-                   id: "course-#{course.id}" 
+.col-md-3.col-xs-4
+  .thumbnail
+    = image_tag course.image.url
+    .caption
+      %p
+        %strong
+          Name
+        = course.name
+        %br/
+        %strong
+          Price:
+        = course.price
+        %br/
+        %strong
+          Type:
+        = course.course_type
+    = form_tag admin_add_item_to_menu_path, method: :post do
+      = hidden_field_tag 'menu_item[course_id]', course.id
+      = hidden_field_tag 'menu_item[daily_menu_id]', @daily_menu.id        
+      .form-actions
+        = button_tag "Add to menu", 
+                     class: "btn btn-primary btn-block", 
+                     id: "course-#{course.id}" 

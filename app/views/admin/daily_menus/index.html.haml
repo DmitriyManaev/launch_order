@@ -1,28 +1,39 @@
 - if @daily_menu 
   %h4 Daily menu for today
-  #daily_menu.thumbnail.row
-    - if @daily_menu.courses.exists?
-      - @daily_menu.courses.each do |course|
-        .col-md-3
-          .thumbnail 
-            = image_tag course.image.url(:thumb)
-            .caption
-              %strong
-                Name:  
-              = course.name
-              %br/
-              %strong
-                Type:
-              = course.course_type 
-    - else 
-      Nothing          
+  - if @daily_menu.courses.exists?
+    .row
+      .col-xs-12.margin-bottom-10
+        .col-xs-4
+          %strong
+            Name
+        .col-xs-3
+          %strong
+            Course type
+        .col-xs-2
+          %strong
+            Price
+    #daily_menu
+      - @daily_menu.courses.order(:course_type).each do |course|
+        .thumbnail.col-xs-12
+          .col-xs-4
+            = course.name
+          .col-xs-3  
+            = course.course_type
+          .col-xs-2
+            = course.price
+          .col-xs-2
+            = link_to "Delete", admin_delete_menu_item_path(course_id: course.id, daily_menu_id: @daily_menu.id), method: :delete
+        .clearfix
+  - else 
+    .thumbnail
+      %p
+        Nothing          
   %h4 Choose items for today menu
   .row
     - @courses.each do |course|
-      .col-md-4
-        .thumbnail
-          = render partial: "course_item", locals: {course: course}
+      - if !@daily_menu.courses.include?(course) 
+        = render partial: "course_item", locals: {course: course}
 - else
-  = form_tag admin_daily_menus_path, method: :post do
+  = form_tag admin_daily_menus_path, method: :post, class: "form" do
     .form-actions
-    = button_tag "Create todays menu", class: "btn btn-lg btn-primary btn-block" 
+    = button_tag "Create menu for today", class: "btn btn-lg btn-primary btn-block" 

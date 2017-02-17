@@ -1,25 +1,36 @@
-.row
-  .col-md-9
-    #content.container.col-md-12
-      %h4 Choose the date:
-      .row
-        .col-md-2
-          %input#datepicker.form-control.form-field
-      %h3
-        Daily menu for 
-        %span#daily_menu_date
-          - if @daily_menu
-            = @daily_menu.date.strftime('%d/%m/%Y')
-          - else  
-            = DateTime.now.strftime('%d/%m/%Y')
-      #daily_menu_items.row
+.col-md-9.col-xs-8
+  #content 
+    %h4 Choose the date:
+    .col-md-2.col-xs-3
+      %input#datepicker_menu.form-control.form-field
+    .col-md-2.col-xs-3
+      %button#getMenu.btn Get menu for date  
+    .clearfix 
+
+    %h3.margin-bottom-10 
+      Daily menu for 
+      %span#daily_menu_date
         - if @daily_menu
-          - if @daily_menu.courses.exists?
-            - @daily_menu.courses.each do |course|
-              .col-md-4
-                .thumbnail
-                  = render partial: "course_item", locals: {course: course}  
-        - else
-          %p
-            Nothing =(                   
-  = render 'shared/sidebar'
+          = @daily_menu.date.strftime('%d/%m/%Y')
+        - else  
+          = DateTime.now.strftime('%d/%m/%Y')
+    #daily_menu_items.row
+      - if @daily_menu
+        - if @daily_menu.courses.exists?
+          %h4 First courses
+          - @daily_menu.courses.by_type("first course").each do |course|
+            = render partial: "shared/course_item", locals: {course: course}
+          .clearfix
+
+          %h4 Main courses
+          - @daily_menu.courses.by_type("main course").each do |course|
+            = render partial: "shared/course_item", locals: {course: course}
+          .clearfix
+
+          %h4 Drinks
+          - @daily_menu.courses.by_type("drink").each do |course|
+            = render partial: "shared/course_item", locals: {course: course}
+      - else
+        %p
+          Nothing =(   
+= render 'shared/sidebar'                          

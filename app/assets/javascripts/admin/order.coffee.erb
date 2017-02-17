@@ -1,0 +1,21 @@
+$(document).on 'turbolinks:load', ->
+  $('#datepicker_order').datepicker
+    maxDate: '0d'
+    dateFormat: 'dd/mm/yy'
+    todayHighlight: true
+    onSelect: ->
+      date = this.value
+      $('#datepicker_order').datepicker("setDate", date)
+  
+  $("#getOrders").click ->
+    date = $('#datepicker_order').datepicker "getDate"
+    fdate = formattedDate(date)
+
+    $("#date").text fdate
+    $.ajax "<%= Rails.application.routes.url_helpers.admin_get_orders_path %>",
+      method: "GET"
+      dataType: "html"
+      data: 
+        date: fdate
+      success: (data) ->
+        $("#order_items").html data

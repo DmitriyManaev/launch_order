@@ -1,0 +1,9 @@
+.thumbnail.row.margin-top-10.margin-bottom-10
+  .col-xs-2
+    = course.name
+  .col-xs-2
+    = course.course_type
+  .col-xs-1
+    = course.price
+  .col-xs-1
+    = link_to "Edit", edit_admin_course_path(id: course.id)

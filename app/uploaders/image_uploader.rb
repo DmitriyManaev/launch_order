@@ -9,7 +9,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    "unavailable.png"
+    "not_available.png"
   end
 
   version :thumb do

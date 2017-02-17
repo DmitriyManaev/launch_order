@@ -7,20 +7,21 @@ describe 'Ability' do
       admin = create(:admin)     
       login_as admin
 
-      visit root_path
+      visit admin_path
       
-      expect(page).to have_content("Admin panel")
+      expect(page).to have_content("Admin")
     end
   end
 
-  context 'if log in as user' do   
-    it 'not displays Admin panel' do
+  context 'if log in as user' do  
+    it 'displays daily menu' do
       user = create(:user)
 
       sign_in user
-      visit root_path
+      visit admin_path
 
-      expect(page).not_to have_content("Admin panel")
+      expect(page).to have_content("Access denied!")
+      expect(page).to have_content("Daily menu for")
     end
   end
  

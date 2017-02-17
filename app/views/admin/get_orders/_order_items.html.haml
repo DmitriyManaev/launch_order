@@ -1,5 +1,6 @@
 - orders.each do |order|
   = render partial: "admin/shared/order_item", locals: {order: order}
 %strong
-  Total cost: 
-= total_cost  
+  Total cost:
+%span#totalCost
+  = total_cost  

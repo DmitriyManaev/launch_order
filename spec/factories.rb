@@ -17,6 +17,7 @@ FactoryGirl.define do
     email "username@gmail.com"
     password "password"
     password_confirmation "password"
+    access_token "6b3300744c2ea3451a87"
     role
   end
 
@@ -32,12 +33,43 @@ FactoryGirl.define do
     date today_date
   end
   
-  
-
-  factory :order do
-    
-#    total_cost
-#    user
+  factory :course do
+    name "something"
+    price 10
+    course_type "first course"
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'courses', 'test_image.jpg')) }
   end
 
+  factory :first_course, class: Course do
+    name "soup"
+    price 30.0
+    course_type "first course"
+  end
+
+  factory :main_course, class: Course do
+    name "plov"
+    price 40.0
+    course_type "main course"
+  end
+
+  factory :drink, class: Course do
+    name "coffee"
+    price 50.0
+    course_type "drink"
+  end
+
+  factory :order do
+    user
+    first_course_id 1
+    main_course_id 2
+    drink_id 3
+    date today_date
+    total_cost 120
+  end
+
+  factory :menu_item do
+    course_id 1
+    daily_menu_id 1
+  end
+  
 end

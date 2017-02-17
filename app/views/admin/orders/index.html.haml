@@ -1,20 +1,40 @@
-.row
-  #content.container.col-md-12
-    %h4 Choose the date:
-    .row
-      .col-md-2
-        %input#datepicker.form-control.form-field
-    %h3 
-      Orders for 
-      %span#date  
-        = DateTime.now.strftime('%d/%m/%Y')
-    #order_items.row
-      - if @orders
-        - @orders.each do |order|
-          = render partial: "admin/shared/order_item", locals: {order: order}
-        %strong
-          Total cost: 
-        = @total_cost    
-      - else
-        %p
-          Not orders for today  
+%h4 Choose the date:
+.col-md-2.col-xs-3
+  %input#datepicker_order.form-control.form-field
+.col-md-2.col-xs-3
+  %button#getOrders.btn Get orders
+.clearfix  
+.margin-bottom-10
+  %h3 
+    Orders for 
+    %span#date  
+      = DateTime.now.strftime('%d/%m/%Y')
+.col-xs-2
+  %strong
+    Name
+.col-xs-2
+  %strong
+    Email
+.col-xs-2
+  %strong
+    First course
+.col-xs-2
+  %strong
+    Main course
+.col-xs-2
+  %strong
+    Drink
+.col-xs-1
+  %strong
+    Cost                       
+#order_items.col-xs-12
+  - if @orders
+    - @orders.each do |order|
+      = render partial: "admin/shared/order_item", locals: {order: order}
+    %strong
+      Total cost:
+    %span#totalCost
+      = @total_cost    
+  - else
+    %p
+      Not orders for today

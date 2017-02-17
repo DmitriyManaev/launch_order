@@ -9,6 +9,5 @@ class GetDailyMenusController < ApplicationController
       render html: "<strong>Not Found</strong>".html_safe
     end  
   end
-  
 
 end

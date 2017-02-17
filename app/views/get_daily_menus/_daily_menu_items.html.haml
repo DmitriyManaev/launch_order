@@ -1,17 +1,13 @@
-- daily_menu.courses.each do |course|
-  .col-md-4
-    .thumbnail
-      = image_tag course.image.url
-      .caption
-        %p
-          %strong
-            Name
-          = course.name
-          %br/
-          %strong
-            Price:
-          = course.price
-          %br/
-          %strong
-            Type:
-          = course.course_type
+%h4 First courses
+- daily_menu.courses.by_type("first course").each do |course|
+  = render partial: "shared/course_item", locals: {course: course}
+.clearfix
+
+%h4 Main courses
+- daily_menu.courses.by_type("main course").each do |course|
+  = render partial: "shared/course_item", locals: {course: course}
+.clearfix
+
+%h4 Drinks
+- daily_menu.courses.by_type("drink").each do |course|
+  = render partial: "shared/course_item", locals: {course: course}

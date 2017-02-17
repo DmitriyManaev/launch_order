@@ -1,10 +1,21 @@
-%h3 
-  All users
-%ol  
-  - @users.each do |user|
-    %li
-      %strong 
-        = user.name 
-      (
+%h3 Users
+.margin-bottom-10 
+  .col-xs-1
+    %strong
+      id
+  .col-xs-2
+    %strong
+      Name
+  .col-xs-3
+    %strong
+      Email
+  .clearfix         
+- @users.each do |user|
+  .thumbnail.col-xs-12
+    .col-xs-1
+      = user.id
+    .col-xs-2  
+      = user.name 
+    .col-xs-3
       = user.email
-      )
+      

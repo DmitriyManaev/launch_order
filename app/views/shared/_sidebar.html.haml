@@ -1,30 +1,30 @@
-.col-md-3.sidebar
+.col-md-3.col-xs-4.sidebar
   #order-form.thumbnail
     = simple_form_for @order, url: :orders, method: :post, html: {class: "form"} do |f|
       .form-inputs
-        %h4 Choose lunch items
-        = f.error_notification
-        %label First course
-        = select "order", 
-                 "first_course_id", 
-                 @first_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price}]}, 
-                 { include_blank: false }, 
-                 class: "form-control form-field"
-        %label Main course
-        = select "order", 
-                 "main_course_id", 
-                 @main_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
-                 { include_blank: false }, 
-                 class: "form-control form-field"
-        %label Drink
-        = select "order", 
-                 "drink_id", 
-                 @drinks.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
-                 { include_blank: false }, 
-                 class: "form-control form-field" 
-        .form-actions
-        %p
-          %strong
-            Total price:
-          %span#total_price
-          = f.button :submit, "Submit", id: "orderSubmit", class: "btn btn-lg btn-primary btn-block"
+      %h4 Choose lunch items
+      = f.error_notification
+      %label First course
+      = select "order", 
+               "first_course_id", 
+               @first_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price}]}, 
+               { include_blank: false }, 
+               class: "form-control form-field"
+      %label Main course
+      = select "order", 
+               "main_course_id", 
+               @main_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
+               { include_blank: false }, 
+               class: "form-control form-field"
+      %label Drink
+      = select "order", 
+               "drink_id", 
+               @drinks.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
+               { include_blank: false }, 
+               class: "form-control form-field" 
+      .form-actions
+      %p
+        %strong
+          Total price:
+        %span#total_price
+        = f.button :submit, "Submit", id: "orderSubmit", class: "btn btn-lg btn-primary btn-block"

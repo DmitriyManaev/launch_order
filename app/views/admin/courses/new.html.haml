@@ -1,4 +1,4 @@
-= simple_form_for @course, url: :create_course, method: :post,  html: {multipart: true, class: "form"} do |f|
+= simple_form_for @course, url: :admin_create_course, method: :post,  html: {multipart: true, class: "form"} do |f|
   %h2 New course
   .form-inputs
     = f.error_notification
@@ -12,7 +12,7 @@
                     autofocus: true, 
                     class: "form-control form-field",
                     placeholder: "Price" 
-    %label Choose course type
+    %label Course type
     = select "course", 
              "course_type", 
              @course.course_types, 
@@ -20,4 +20,4 @@
              class: "form-control form-field"
     = f.input :image, as: :file
   .form-actions
-    = f.button :submit, "Add course", class: "btn btn-lg btn-primary btn-block" 
+    = f.button :submit, "Submit", class: "btn btn-lg btn-primary btn-block" 

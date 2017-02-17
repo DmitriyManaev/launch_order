@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205134853) do
+ActiveRecord::Schema.define(version: 20170214105227) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20170205134853) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "menu_items", ["course_id"], name: "index_menu_items_on_course_id"
-  add_index "menu_items", ["daily_menu_id"], name: "index_menu_items_on_daily_menu_id"
+  add_index "menu_items", ["course_id"], name: "index_menu_items_on_course_id", using: :btree
+  add_index "menu_items", ["daily_menu_id"], name: "index_menu_items_on_daily_menu_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -71,9 +74,10 @@ ActiveRecord::Schema.define(version: 20170205134853) do
     t.datetime "updated_at",                          null: false
     t.string   "role_id"
     t.string   "name",                   default: "", null: false
+    t.string   "access_token"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

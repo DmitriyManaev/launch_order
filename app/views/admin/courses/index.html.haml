@@ -1,23 +1,25 @@
-%h3 
-  Courses 
-  = link_to 'Add course', new_admin_course_path, {:class => 'btn btn-lg btn-link'}
-- @courses.each do |course|
-  .col-md-4
-    .thumbnail
-      = image_tag course.image.url 
-      .caption
+.row
+  .col-xs-12.margin-bottom-10
+    %h3 
+      Courses 
+      = link_to 'Add course', new_admin_course_path, {:class => 'btn btn-lg btn-link'}
+  .col-xs-12
+    .col-xs-2
+      %strong
+        Name
+    .col-xs-2
+      %strong
+        Course type
+    .col-xs-1
+      %strong
+        Price
+  .col-xs-12                        
+    #order_items.col-xs-12
+      - if @courses
+        - @courses.each do |course|
+          = render partial: "admin/shared/list_course_item", locals: {course: course}
+      - else
         %p
-          %strong 
-            Name:
-          = course.name
-          %br/ 
-          %strong 
-            Price:
-          = course.price
-          %br/ 
-          %strong 
-            Type:
-          = course.course_type  
-        = link_to "Delete", delete_course_path(id: course.id), method: :delete
+          No courses
 
 

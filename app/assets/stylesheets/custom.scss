@@ -12,7 +12,18 @@ body {
   .checkbox{
     padding-left: 20px;
   }
-}  
+}
+.margin-top-10 { margin-top: 1.0em; }
+.margin-top-15 { margin-top: 1.5em; }
+.margin-top-20 { margin-top: 2.0em; }
+.margin-top-25 { margin-top: 2.5em; }
+.margin-top-30 { margin-top: 3.0em; }
+
+.margin-bottom-10 { margin-bottom: 1.0em; }
+.margin-bottom-15 { margin-bottom: 1.5em; }
+.margin-bottom-20 { margin-bottom: 2.0em; }
+.margin-bottom-25 { margin-bottom: 2.5em; }
+.margin-bottom-30 { margin-bottom: 3.0em; }
 /* alert messages */
 .alert {
   display: block;
@@ -41,5 +52,3 @@ body {
   color: #3c3c7c;
   border: 1px solid #acb7e2;
 }
-/* calendar */
-

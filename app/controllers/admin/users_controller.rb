@@ -1,14 +1,9 @@
-class Admin::UsersController < ApplicationController
-  layout "admin"
-  load_resource param_method: :my_sanitizer, only: :index
-  
-  def index
+module Admin
+  class UsersController < BaseController
+    
+    def index
+      role_id = Role.find_by_name("User").id
+      @users = User.select("id, name, email").where(role_id: role_id)
+    end
   end
-
-  private
-
-  def my_sanitizer
-    params.require(:user).permit(:name, :email)
-  end
-
 end

@@ -1,23 +1,15 @@
-.thumbnail
-  %strong
-    User:
-  = order.user.name
-  (
-  = order.user.email
-  )
-  %br/ 
-  %strong
-    First course:
-  = Course.find(order.first_course_id).name
-  %br/ 
-  %strong
-    Main course:
-  = Course.find(order.main_course_id).name
-  %br/ 
-  %strong
-    Drink:
-  = Course.find(order.drink_id).name
-  %br/ 
-  %strong
-    Order cost:
-  = order.total_cost
+.thumbnail.row.margin-top-10.margin-bottom-10
+  .col-xs-2
+    = order.user.name
+  .col-xs-2
+    = order.user.email
+  .col-xs-2
+    = Course.find(order.first_course_id).name
+  .col-xs-2
+    = Course.find(order.main_course_id).name
+  .col-xs-2
+    = Course.find(order.drink_id).name
+  .col-xs-1
+    = order.total_cost
+  .col-xs-1
+    = link_to "Delete", admin_delete_order_path(id: order.id), method: :delete
