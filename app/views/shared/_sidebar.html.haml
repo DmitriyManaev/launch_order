@@ -2,26 +2,29 @@
   #order-form.thumbnail
     = simple_form_for @order, url: :orders, method: :post, html: {class: "form"} do |f|
       .form-inputs
-      %h4 Choose lunch items
+      %h4 Order items
       = f.error_notification
       %label First course
-      = select "order", 
-               "first_course_id", 
-               @first_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price}]}, 
-               { include_blank: false }, 
-               class: "form-control form-field"
+      = text_field_tag "first_course", nil, { placeholder: "First course", 
+                                              class: "form-control form-field",
+                                              disabled: true,
+                                              readonly: true }
+      = hidden_field_tag "first_course_id", 0, class: "hidden_field"
+      = hidden_field_tag "first_course_price", 0, readonly: true, class: "hidden_field"                      
       %label Main course
-      = select "order", 
-               "main_course_id", 
-               @main_courses.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
-               { include_blank: false }, 
-               class: "form-control form-field"
+      = text_field_tag "main_course", nil, { placeholder: "Main course", 
+                                              class: "form-control form-field", 
+                                              disabled: true,
+                                              readonly: true }
+      = hidden_field_tag "main_course_id", 0, class: "hidden_field"
+      = hidden_field_tag "main_course_price", 0, readonly: true, class: "hidden_field"
       %label Drink
-      = select "order", 
-               "drink_id", 
-               @drinks.collect {|p| [ p.name, p.id, {'data-price' => p.price} ] }, 
-               { include_blank: false }, 
-               class: "form-control form-field" 
+      = text_field_tag "drink", nil, { placeholder: "Drink",
+                                              class: "form-control form-field", 
+                                              disabled: true,
+                                              readonly: true }
+      = hidden_field_tag "drink_id", 0, class: "hidden_field"
+      = hidden_field_tag "drink_price", 0, readonly: true, class: "hidden_field"
       .form-actions
       %p
         %strong

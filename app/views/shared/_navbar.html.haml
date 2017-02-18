@@ -1,10 +1,10 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .container
-    %ul.nav.navbar-nav
-      %li
-        = link_to 'Launch Order', root_path, class: "navbar-brand"
+    .navbar-header
+      = link_to 'Launch Order', root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
         %li 
           = link_to 'Edit profile', edit_user_registration_path
         %li 
-          = link_to 'Log out', destroy_user_session_path, method: :delete 
+          = link_to 'Log out', destroy_user_session_path, method: :delete

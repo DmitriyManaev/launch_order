@@ -4,7 +4,12 @@
     .col-md-2.col-xs-3
       %input#datepicker_menu.form-control.form-field
     .col-md-2.col-xs-3
-      %button#getMenu.btn Get menu for date  
+      %button#getMenu.btn Get menu for date
+    .col-md-3.col-md-offset-5.col-xs-3.col-xs-offset-3
+      %strong
+        Today date:
+      %span#todayDate
+        = DateTime.now.strftime('%d/%m/%Y')
     .clearfix 
 
     %h3.margin-bottom-10 
@@ -18,18 +23,20 @@
       - if @daily_menu
         - if @daily_menu.courses.exists?
           %h4 First courses
-          - @daily_menu.courses.by_type("first course").each do |course|
-            = render partial: "shared/course_item", locals: {course: course}
+          #first_course_items
+            - @daily_menu.courses.by_type("first course").each do |course|
+              = render partial: "shared/course_item", locals: {course: course}
           .clearfix
-
           %h4 Main courses
-          - @daily_menu.courses.by_type("main course").each do |course|
-            = render partial: "shared/course_item", locals: {course: course}
+          #main_course_items
+            - @daily_menu.courses.by_type("main course").each do |course|
+              = render partial: "shared/course_item", locals: {course: course}
           .clearfix
-
           %h4 Drinks
-          - @daily_menu.courses.by_type("drink").each do |course|
-            = render partial: "shared/course_item", locals: {course: course}
+          #drink_items
+            - @daily_menu.courses.by_type("drink").each do |course|
+              = render partial: "shared/course_item", locals: {course: course}
+          .clearfix    
       - else
         %p
           Nothing =(   

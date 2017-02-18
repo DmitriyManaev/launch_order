@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   end  
 
   def order_params
-    params.require(:order).permit(:first_course_id, :main_course_id, :drink_id)
+    params.permit(:first_course_id, :main_course_id, :drink_id)
   end
 
 end

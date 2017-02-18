@@ -1,0 +1,57 @@
+$ ->
+  totalPrice = ->
+    firstCoursePrice = parseFloat $("#first_course_price").val()
+    mainCoursePrice = parseFloat $("#main_course_price").val()
+    drinkPrice = parseFloat $("#drink_price").val()
+
+    total = firstCoursePrice + mainCoursePrice + drinkPrice or 0;
+
+    $("#total_price").text total
+    
+    if firstCoursePrice and mainCoursePrice and drinkPrice
+      $("#orderSubmit").attr disabled: false
+    else
+      $("#orderSubmit").attr disabled: true
+
+  addToOrder = (item)->
+    type = $(item).data("type").replace(" ", "_")
+    $("#" + type).val $(item).data "name"
+    $("#" + type + "_id").val $(item).data "id"
+    $("#"+ type + "_price").val $(item).data "price"
+    $("#" + type + "_items").find(".to_order_btn").attr("disabled", false)
+    $(item).attr("disabled", true) 
+    totalPrice()
+      
+  totalPrice()
+  
+  $(".to_order_btn").click ->
+    addToOrder this
+
+  $("#datepicker_menu").datepicker
+    minDate: '-2w'
+    maxDate: '0d'
+    dateFormat: 'dd/mm/yy'
+    todayHighlight: true
+
+  $("#getMenu").click ->
+    date = $("#datepicker_menu").datepicker "getDate"
+    fdate = formattedDate date 
+
+    $("#daily_menu_date").text fdate
+    $.ajax "<%= Rails.application.routes.url_helpers.get_daily_menu_path %>",
+      method: "GET"
+      dataType: "html"
+      data: 
+        date: fdate
+      success: (data) ->
+        $("#daily_menu_items").html data
+        $(".form input.form-field").val null
+        $(".form input.hidden_field").val 0
+
+        tDate = $("#todayDate").text().replace(/\s+/g,'')
+
+        if fdate != tDate
+          $(".to_order_btn").attr("disabled", true)
+
+        $(".to_order_btn").click ->
+          addToOrder this

@@ -27,6 +27,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'phantomjs'
+  gem "capybara-webkit"
 end
 
 group :development do
@@ -42,4 +43,3 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
 end
-

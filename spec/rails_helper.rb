@@ -7,12 +7,14 @@ require 'devise'
 require 'capybara/rspec'
 require 'phantomjs/poltergeist'
 require 'capybara/poltergeist'
+require 'support/wait_for_ajax'
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, phantomjs: Phantomjs.path)
 end
 
 Capybara.javascript_driver = :poltergeist
+Capybara.ignore_hidden_elements = false
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -20,6 +22,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include WaitForAjax, type: :feature
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

@@ -1,13 +1,14 @@
 %h4 First courses
-- daily_menu.courses.by_type("first course").each do |course|
-  = render partial: "shared/course_item", locals: {course: course}
+#first_course_items
+  - daily_menu.courses.by_type("first course").each do |course|
+    = render partial: "shared/course_item", locals: {course: course}
 .clearfix
-
 %h4 Main courses
-- daily_menu.courses.by_type("main course").each do |course|
-  = render partial: "shared/course_item", locals: {course: course}
+#main_course_items
+  - daily_menu.courses.by_type("main course").each do |course|
+    = render partial: "shared/course_item", locals: {course: course}
 .clearfix
-
 %h4 Drinks
-- daily_menu.courses.by_type("drink").each do |course|
-  = render partial: "shared/course_item", locals: {course: course}
+#drink_items
+  - daily_menu.courses.by_type("drink").each do |course|
+    = render partial: "shared/course_item", locals: {course: course}

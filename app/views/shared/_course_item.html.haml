@@ -10,3 +10,9 @@
         %strong
           Price:
         = course.price
+    = button_tag 'Add to order', 
+                  class: 'btn btn-primary btn-block to_order_btn',
+                  data: { id: course.id, 
+                          name: course.name, 
+                          price: course.price,
+                          type: course.course_type }  
