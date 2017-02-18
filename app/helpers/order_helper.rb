@@ -1,7 +1,7 @@
 module OrderHelper
   def get_total_cost orders
     if orders
-      orders.map { |o| o.total_cost }.sum
+      return orders.map { |o| o.total_cost }.sum
     end
   end
 end    
