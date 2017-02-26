@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, controllers: {registrations: "registrations", 
+                                   omniauth_callbacks: "omniauth_callbacks"}
   root 'daily_menus#index'
   get 'admin', to: 'admin/admin#index'
   resources :orders, only: [:new, :create]

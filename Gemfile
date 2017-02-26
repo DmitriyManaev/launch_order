@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.9'
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -19,6 +19,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'cancancan', '~> 1.10'
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'jquery-turbolinks'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'  
